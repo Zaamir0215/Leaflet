@@ -3,14 +3,16 @@ language: node_js
 node_js:
   - node
 before_script:
-  - export DISPLAY=:1
+  - "export DISPLAY=:99.0"
+  - "sh -e /etc/init.d/xvfb start"
+  - sleep 3
 addons:
   artifacts:
     paths:
     - dist
     target_paths:
     - content/leaflet/${NAME}
-    chrome: stable
+    firefox: latest
 env:  
   global:
   - ARTIFACTS_BUCKET=leafletjs-cdn
@@ -25,7 +27,7 @@ env:
       fSJXkxmQ4MAjUdNFDIirBHhdZme8q3PueFzJ+5odFMvPGn/aITQ=
 script:
   - npm test
-  - npm test -- --chrome
+  - npm xvfb-run --server-args="-screen 0 1280x1024x16" npm run test-nolint -- --browsers Firefox
  
 after_success:
   - npm run build
