@@ -29,7 +29,6 @@ env:
       fSJXkxmQ4MAjUdNFDIirBHhdZme8q3PueFzJ+5odFMvPGn/aITQ=
 script:
   - npm test
-  - npm xvfb-run --server-args="-screen 0 1280x1024x16" npm run test-nolint -- --browsers Firefox
  
 after_success:
   - npm run build
