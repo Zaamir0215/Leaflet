@@ -10,6 +10,8 @@ addons:
     - content/leaflet/${NAME}
   firefox: latest
 env:
+
+  export DISPLAY=:1
   global:
   - ARTIFACTS_BUCKET=leafletjs-cdn
   - ARTIFACTS_PERMISSIONS=public-read
